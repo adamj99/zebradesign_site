@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Zebra Designs — apps</title>
+<meta name="description" content="A few apps I've designed and built for Android and iOS: CubeCracker, Snagly, Number Buddies and Aisle & Grace." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://zebradesigns.app/" />
+<meta name="theme-color" content="#161310" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Zebra Designs" />
+<meta property="og:title" content="Zebra Designs — apps" />
+<meta property="og:description" content="A few apps I've designed and built for Android and iOS." />
+<meta property="og:url" content="https://zebradesigns.app/" />
+<meta property="og:locale" content="en_GB" />
+
+<style>
+  :root{
+    --ink:#171410;
+    --ink-70:#4b463d;
+    --ink-45:#817a6d;
+    --paper:#ecebe4;
+    --paper-pure:#f4f3ee;
+    --line:rgba(23,20,16,.16);
+    --line-soft:rgba(23,20,16,.09);
+    --cube:#d7352b;
+    --snag:#2b5fd9;
+    --num:#4a7a2b;
+    --aisle:#b08a2f;
+    --font-display:'Helvetica Neue','Segoe UI',Helvetica,Arial,sans-serif;
+    --font-body:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    --font-mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-snap-type:y proximity;}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--font-body);font-size:17px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  a{color:inherit;}
+  img,canvas{display:block;max-width:100%;}
+  .wrap{width:min(1120px,92vw);margin-inline:auto;}
+  .mono{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;min-height:100vh;min-height:100dvh;background:#100e0b;color:#f4f3ee;overflow:hidden;display:flex;flex-direction:column;scroll-snap-align:start;}
+  #dazzle{position:absolute;inset:0;width:100%;height:100%;z-index:0;}
+  .hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:
+      linear-gradient(100deg,rgba(10,9,6,.94) 0%,rgba(10,9,6,.8) 36%,rgba(10,9,6,.4) 64%,rgba(10,9,6,.14) 100%),
+      radial-gradient(130% 130% at 100% 55%,transparent 50%,rgba(8,7,5,.6) 100%);}
+  .hero-top{position:relative;z-index:2;padding:26px 0;}
+  .hero-top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;}
+  .hero-top .mono{color:rgba(244,243,238,.72);}
+  .mark{display:inline-flex;align-items:center;gap:11px;font-family:var(--font-display);font-weight:800;letter-spacing:.02em;font-size:1.02rem;text-decoration:none;}
+  .mark-badge{width:30px;height:30px;border-radius:50%;background:#f4f3ee;position:relative;overflow:hidden;flex:none;}
+  .mark-badge::before{content:"";position:absolute;inset:0;
+    background:repeating-linear-gradient(68deg,#100e0b 0 4px,transparent 4px 9px);}
+  .hero-body{position:relative;z-index:2;flex:1;display:flex;align-items:center;}
+  .hero-body .wrap{width:min(1000px,92vw);}
+  .eyebrow{color:rgba(244,243,238,.78);margin:0 0 22px;text-shadow:0 1px 14px rgba(8,7,5,.65);}
+  h1{font-family:var(--font-display);font-weight:800;
+    font-size:clamp(3.1rem,11.5vw,9rem);line-height:.9;letter-spacing:-.02em;
+    margin:0;text-wrap:balance;text-shadow:0 2px 34px rgba(8,7,5,.6),0 1px 4px rgba(8,7,5,.5);}
+  h1 .thin{display:block;font-weight:600;color:rgba(244,243,238,.9);-webkit-text-stroke:0;}
+  h1 em{font-style:normal;color:transparent;-webkit-text-stroke:1.4px rgba(244,243,238,.92);}
+  .lede{max-width:38ch;margin:30px 0 0;font-size:clamp(1.05rem,2.4vw,1.4rem);color:rgba(244,243,238,.9);line-height:1.5;text-shadow:0 1px 18px rgba(8,7,5,.7);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;text-decoration:none;
+    padding:13px 22px;border-radius:2px;border:1.5px solid transparent;transition:transform .18s ease,background .18s ease,color .18s ease;}
+  .btn-solid{background:#f4f3ee;color:#100e0b;}
+  .btn-solid:hover{transform:translateY(-2px);}
+  .btn-ghost{border-color:rgba(244,243,238,.4);color:#f4f3ee;}
+  .btn-ghost:hover{border-color:#f4f3ee;transform:translateY(-2px);}
+
+  /* ---------- MARQUEE ---------- */
+  .marquee{position:relative;z-index:2;background:#f4f3ee;color:#100e0b;border-block:2px solid #100e0b;overflow:hidden;}
+  .marquee-track{display:flex;gap:0;white-space:nowrap;animation:slide 32s linear infinite;}
+  .marquee span{font-family:var(--font-display);font-weight:700;font-size:.92rem;letter-spacing:.14em;text-transform:uppercase;padding:11px 26px;display:inline-flex;align-items:center;gap:26px;}
+  .marquee span::after{content:"✳";color:var(--cube);}
+  @keyframes slide{to{transform:translateX(-50%);}}
+
+  /* ---------- STUDIO STATEMENT ---------- */
+  .studio{padding:clamp(64px,9vw,120px) 0;}
+  .studio .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr);gap:clamp(28px,6vw,80px);align-items:start;}
+  .studio h2{font-family:var(--font-display);font-weight:700;font-size:clamp(1.9rem,4.4vw,3.1rem);line-height:1.02;letter-spacing:-.015em;margin:14px 0 0;text-wrap:balance;}
+  .studio .mono{color:var(--ink-45);}
+  .studio p{margin:0 0 1.1em;color:var(--ink-70);font-size:1.08rem;}
+  .studio p:last-child{margin-bottom:0;}
+  .studio strong{color:var(--ink);font-weight:600;}
+  .studio a{color:var(--ink);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;font-weight:500;}
+
+  /* ---------- DAZZLE GRID ---------- */
+  .dazzle{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:clamp(36px,5vh,64px) 0;scroll-snap-align:start;}
+  .dazzle > .wrap{width:min(1120px,92vw);}
+  .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;padding-bottom:26px;border-bottom:2px solid var(--ink);margin-bottom:0;}
+  .section-head h2{font-family:var(--font-display);font-weight:800;font-size:clamp(2rem,6vw,4rem);line-height:.92;letter-spacing:-.02em;margin:0;}
+  .section-head .mono{color:var(--ink-45);padding-bottom:6px;}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-left:1px solid var(--line);}
+  .card{--a:var(--ink);position:relative;padding:clamp(30px,4vw,48px);border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+    display:flex;flex-direction:column;gap:18px;background:var(--paper);transition:background .25s ease;overflow:hidden;}
+  .card::before{content:"";position:absolute;top:0;left:0;width:6px;height:100%;background:var(--a);transform:scaleY(0);transform-origin:top;transition:transform .3s ease;}
+  .card:hover{background:var(--paper-pure);}
+  .card:hover::before{transform:scaleY(1);}
+  .card-glyph{width:52px;height:52px;flex:none;color:var(--a);}
+  .card-icon{width:60px;height:60px;border-radius:14px;flex:none;box-shadow:0 1px 4px rgba(23,20,16,.18);}
+  .card-top{display:flex;align-items:center;justify-content:space-between;gap:16px;}
+  .card-plat{font-family:var(--font-mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-45);text-align:right;line-height:1.5;}
+  .card-store{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--a);font-weight:600;font-size:.82rem;font-family:var(--font-mono);letter-spacing:.04em;border:1.5px solid var(--a);border-radius:3px;padding:8px 12px;transition:background .18s ease,color .18s ease;}
+  .card-store:hover{background:var(--a);color:var(--paper-pure);}
+  .card-store svg{width:15px;height:15px;}
+  .card-soon{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.06em;color:var(--ink-45);border:1.5px dashed var(--line);border-radius:3px;padding:8px 12px;}
+  .card h3{font-family:var(--font-display);font-weight:800;font-size:clamp(1.6rem,3vw,2.1rem);letter-spacing:-.01em;margin:0;line-height:1;}
+  .card .one{margin:0;color:var(--ink-70);font-size:1.02rem;max-width:34ch;}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:2px;}
+  .chip{font-family:var(--font-mono);font-size:.63rem;letter-spacing:.09em;text-transform:uppercase;
+    padding:5px 9px;border:1px solid var(--line);border-radius:2px;color:var(--ink-70);}
+  .chip.pos{border-color:color-mix(in srgb,var(--num) 45%,transparent);color:var(--num);}
+  .chip.note{border-color:color-mix(in srgb,var(--cube) 45%,transparent);color:var(--cube);}
+  .card-actions{margin-top:auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding-top:6px;}
+  .card-link{font-weight:600;text-decoration:none;font-size:.95rem;display:inline-flex;align-items:center;gap:6px;color:var(--a);
+    border-bottom:1.5px solid transparent;transition:border-color .2s ease;}
+  .card-link:hover{border-color:var(--a);}
+  .card-link.muted{color:var(--ink-70);}
+  .card-link .arr{transition:transform .2s ease;}
+  .card-link:hover .arr{transform:translateX(3px);}
+  .dot{width:4px;height:4px;border-radius:50%;background:var(--line);}
+
+  /* ---------- PRIVACY MATRIX ---------- */
+  .matrix{padding:clamp(60px,8vw,110px) 0;border-top:2px solid var(--ink);}
+  .matrix-intro{max-width:56ch;margin-bottom:38px;}
+  .matrix-intro h2{font-family:var(--font-display);font-weight:700;font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:-.015em;margin:12px 0 14px;line-height:1.02;}
+  .matrix-intro p{margin:0;color:var(--ink-70);}
+  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{border-collapse:collapse;width:100%;min-width:640px;font-size:.95rem;}
+  caption{text-align:left;}
+  th,td{text-align:left;padding:15px 16px;border-bottom:1px solid var(--line);vertical-align:middle;}
+  thead th{font-family:var(--font-mono);font-size:.64rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-45);border-bottom:2px solid var(--ink);font-weight:400;}
+  tbody th{font-family:var(--font-display);font-weight:700;font-size:1.02rem;white-space:nowrap;}
+  tbody tr:hover{background:var(--paper-pure);}
+  .yn{font-family:var(--font-mono);font-size:.82rem;display:inline-flex;align-items:center;gap:7px;}
+  .yn::before{content:"";width:9px;height:9px;border-radius:50%;flex:none;}
+  .yn.no::before{background:var(--num);}
+  .yn.yes::before{background:var(--cube);}
+  .yn.part::before{background:var(--aisle);}
+  .yn.no{color:var(--num);} .yn.yes{color:var(--cube);} .yn.part{color:var(--ink-70);}
+
+  /* ---------- SERVICES ---------- */
+  .services{padding:clamp(60px,8vw,110px) 0;border-top:2px solid var(--ink);}
+  .svc-head{max-width:60ch;margin-bottom:clamp(30px,4vw,48px);}
+  .svc-head .mono{color:var(--ink-45);}
+  .svc-head h2{font-family:var(--font-display);font-weight:800;font-size:clamp(1.9rem,4.6vw,3.2rem);letter-spacing:-.02em;line-height:1.02;margin:12px 0 14px;text-wrap:balance;}
+  .svc-head p{margin:0;color:var(--ink-70);max-width:56ch;}
+  .svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);}
+  .svc{background:var(--paper);padding:clamp(24px,3vw,32px);display:flex;flex-direction:column;gap:10px;transition:background .2s ease;}
+  .svc:hover{background:var(--paper-pure);}
+  .svc h3{font-family:var(--font-display);font-weight:700;font-size:1.18rem;margin:0;letter-spacing:-.01em;}
+  .svc p{margin:0;color:var(--ink-70);font-size:.97rem;}
+  .svc .num{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.14em;color:var(--ink-45);}
+
+  /* ---------- FAQ ---------- */
+  .faq{padding:clamp(60px,8vw,110px) 0;border-top:2px solid var(--ink);}
+  .faq h2{font-family:var(--font-display);font-weight:800;font-size:clamp(1.9rem,4.6vw,3.2rem);letter-spacing:-.02em;margin:0 0 clamp(26px,4vw,40px);}
+  .faq details{border-bottom:1px solid var(--line);padding:4px 0;}
+  .faq summary{cursor:pointer;list-style:none;padding:20px 40px 20px 0;position:relative;font-family:var(--font-display);font-weight:700;font-size:clamp(1.05rem,2vw,1.3rem);letter-spacing:-.01em;}
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary::after{content:"+";position:absolute;right:4px;top:50%;transform:translateY(-50%);font-family:var(--font-body);font-weight:400;font-size:1.6rem;color:var(--ink-45);transition:transform .2s ease;}
+  .faq details[open] summary::after{content:"–";}
+  .faq details p{margin:0 0 20px;color:var(--ink-70);max-width:66ch;}
+
+  /* ---------- CONTACT ---------- */
+  .contact{background:#100e0b;color:#f4f3ee;padding:clamp(70px,10vw,140px) 0;position:relative;overflow:hidden;}
+  .contact::before{content:"";position:absolute;inset:0;opacity:.1;background:repeating-linear-gradient(74deg,#f4f3ee 0 3px,transparent 3px 22px);}
+  .contact .wrap{position:relative;z-index:1;text-align:center;}
+  .contact .mono{color:rgba(244,243,238,.6);}
+  .contact h2{font-family:var(--font-display);font-weight:800;font-size:clamp(2.2rem,6.5vw,4.4rem);letter-spacing:-.025em;line-height:.98;margin:14px auto 18px;max-width:16ch;text-wrap:balance;}
+  .contact p{color:rgba(244,243,238,.78);margin:0 auto 32px;max-width:48ch;font-size:1.1rem;}
+  .contact .btn-solid{background:#f4f3ee;color:#100e0b;font-size:1.05rem;padding:15px 28px;}
+  .contact .email-plain{display:block;margin-top:20px;font-family:var(--font-mono);font-size:.9rem;letter-spacing:.06em;color:rgba(244,243,238,.6);text-decoration:none;}
+  .contact .email-plain:hover{color:#f4f3ee;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:#100e0b;color:#f4f3ee;padding:clamp(54px,7vw,90px) 0 46px;}
+  .foot-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:36px 24px;}
+  .foot-brand{max-width:30ch;}
+  .foot-brand .mark{color:#f4f3ee;margin-bottom:16px;}
+  .foot-brand p{color:rgba(244,243,238,.6);margin:0;font-size:.95rem;}
+  .foot-col h4{font-family:var(--font-mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(244,243,238,.5);margin:0 0 15px;font-weight:400;}
+  .foot-col a{display:block;text-decoration:none;color:rgba(244,243,238,.85);margin-bottom:10px;font-size:.98rem;transition:color .18s ease;}
+  .foot-col a:hover{color:#fff;}
+  .foot-bottom{margin-top:48px;padding-top:22px;border-top:1px solid rgba(244,243,238,.14);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;color:rgba(244,243,238,.5);font-size:.82rem;}
+
+  a:focus-visible,.btn:focus-visible,.card-link:focus-visible{outline:2px solid var(--snag);outline-offset:3px;}
+
+  @media (max-width:760px){
+    .studio .wrap{grid-template-columns:1fr;}
+    .grid{grid-template-columns:1fr;border-left:none;}
+    .card{border-left:1px solid var(--line);}
+    .hero-top .mono{display:none;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .marquee-track{animation:none;}
+    .btn,.card,.card-link .arr{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <canvas id="dazzle" aria-hidden="true"></canvas>
+
+  <div class="hero-top">
+    <div class="wrap">
+      <a class="mark" href="/"><span class="mark-badge" aria-hidden="true"></span>Zebra Designs</a>
+    </div>
+  </div>
+
+  <div class="hero-body">
+    <div class="wrap">
+      <p class="eyebrow mono">Independent app developer</p>
+      <h1>Zebra <em>Designs</em></h1>
+      <div class="hero-cta">
+        <a class="btn btn-solid" href="#apps">See the apps ↓</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="dazzle" id="apps">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Apps</h2>
+    </div>
+    <div class="grid">
+
+      <!-- CubeCracker -->
+      <article class="card" style="--a:var(--cube)">
+        <div class="card-top">
+          <img class="card-icon" src="/assets/icons/cubecracker.svg" alt="CubeCracker app icon" width="60" height="60" />
+        </div>
+        <h3>CubeCracker</h3>
+        <p class="one">Point your phone at a scrambled Rubik's cube. It reads the colours and hands back the solution in about twenty moves.</p>
+        <div class="chips">
+          <span class="chip">Puzzle &amp; utility</span>
+          <span class="chip">Computer vision</span>
+        </div>
+        <div class="card-actions">
+          <a class="card-store" href="https://play.google.com/store/apps/details?id=com.cubecracker.app" target="_blank" rel="noopener">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M4 2l12 8-12 8z"/></svg>Google Play</a>
+          <span class="dot"></span>
+          <a class="card-link muted" href="/cubecracker/">Privacy policy</a>
+        </div>
+      </article>
+
+      <!-- Snagly -->
+      <article class="card" style="--a:var(--snag)">
+        <div class="card-top">
+          <img class="card-icon" src="/assets/icons/snagly.png" alt="Snagly app icon" width="60" height="60" />
+        </div>
+        <h3>Snagly</h3>
+        <p class="one">Track every snag in a new-build or renovation, room by room. Share a property and split the list with the people fixing it.</p>
+        <div class="chips">
+          <span class="chip">Property &amp; productivity</span>
+          <span class="chip">Cloud sync &amp; sharing</span>
+          <span class="chip">Multi-device</span>
+        </div>
+        <div class="card-actions">
+          <a class="card-store" href="https://play.google.com/store/apps/details?id=com.snagly.snagly" target="_blank" rel="noopener">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M4 2l12 8-12 8z"/></svg>Google Play</a>
+          <span class="dot"></span>
+          <a class="card-link muted" href="/snagly/">Privacy policy</a>
+        </div>
+      </article>
+
+      <!-- Number Buddies -->
+      <article class="card" style="--a:var(--num)">
+        <div class="card-top">
+          <img class="card-icon" src="/assets/icons/numberbuddies.png" alt="Number Buddies app icon" width="60" height="60" />
+        </div>
+        <h3>Number Buddies</h3>
+        <p class="one">A gentle maths game for children aged 3–10. Friendly buddies, a world leaderboard of made-up names, and grown-up-gated settings.</p>
+        <div class="chips">
+          <span class="chip">Kids &amp; education</span>
+          <span class="chip">Ages 3–10</span>
+        </div>
+        <div class="card-actions">
+          <span class="card-soon">Coming soon to Google Play</span>
+          <span class="dot"></span>
+          <a class="card-link muted" href="/numberbuddies/">Privacy policy</a>
+        </div>
+      </article>
+
+      <!-- Aisle & Grace -->
+      <article class="card" style="--a:var(--aisle)">
+        <div class="card-top">
+          <img class="card-icon" src="/assets/icons/aisle-and-grace.png" alt="Aisle &amp; Grace app icon" width="60" height="60" />
+        </div>
+        <h3>Aisle &amp; Grace</h3>
+        <p class="one">A wedding planner that works offline — guest list, budget, vendors and timeline, all in one calm, well-made app.</p>
+        <div class="chips">
+          <span class="chip">Weddings &amp; planning</span>
+          <span class="chip">Offline-first</span>
+        </div>
+        <div class="card-actions">
+          <a class="card-store" href="https://play.google.com/store/apps/details?id=com.aisleandgrace.app.aisle_and_grace" target="_blank" rel="noopener">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M4 2l12 8-12 8z"/></svg>Google Play</a>
+          <span class="dot"></span>
+          <a class="card-link muted" href="/aisle-and-grace/">Privacy policy</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="mark" href="/"><span class="mark-badge" aria-hidden="true"></span>Zebra Designs</a>
+        <p>A few apps I've designed and built for Android and iOS.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Apps &amp; policies</h4>
+        <a href="/cubecracker/">CubeCracker</a>
+        <a href="/snagly/">Snagly</a>
+        <a href="/numberbuddies/">Number Buddies</a>
+        <a href="/aisle-and-grace/">Aisle &amp; Grace</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:hello@zebradesigns.app">hello@zebradesigns.app</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Zebra Designs</span>
+      <span class="mono">zebradesigns.app</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var canvas=document.getElementById('dazzle');
+  if(!canvas) return;
+  var ctx=canvas.getContext('2d');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var w,h,dpr,bands,t=0;
+
+  function build(){
+    dpr=Math.min(window.devicePixelRatio||1,2);
+    w=canvas.clientWidth; h=canvas.clientHeight;
+    canvas.width=Math.floor(w*dpr); canvas.height=Math.floor(h*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    // Generative stripe field: a set of near-vertical ink/paper bands,
+    // each with its own width, lean and wave — a zebra's flank, never repeating.
+    bands=[];
+    var x=-120, i=0;
+    while(x<w+160){
+      var bw=22+Math.sin(i*1.7)*8+ (i%3)*7 + (i%5)*4;
+      bands.push({
+        x:x,
+        w:bw,
+        lean:(Math.sin(i*0.9)*0.5+ (i%2?0.18:-0.12))*0.9,
+        amp:10+ (i%4)*7 + Math.sin(i*2.1)*6,
+        freq:0.004+ (i%3)*0.0016,
+        phase:i*0.8,
+        speed:0.12+ (i%3)*0.05
+      });
+      x+=bw+ (10+ (i%3)*6);
+      i++;
+    }
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    ctx.fillStyle='#100e0b';
+    ctx.fillRect(0,0,w,h);
+    ctx.fillStyle='rgba(244,243,238,0.6)';
+    for(var b=0;b<bands.length;b++){
+      var band=bands[b];
+      ctx.beginPath();
+      var step=16;
+      // right edge going down
+      for(var y=-20;y<=h+20;y+=step){
+        var off=Math.sin(y*band.freq + band.phase + t*band.speed)*band.amp;
+        var px=band.x + off + y*band.lean + band.w;
+        if(y===-20) ctx.moveTo(px,y); else ctx.lineTo(px,y);
+      }
+      // left edge going up
+      for(var y2=h+20;y2>=-20;y2-=step){
+        var off2=Math.sin(y2*band.freq + band.phase + t*band.speed)*band.amp;
+        var px2=band.x + off2 + y2*band.lean;
+        ctx.lineTo(px2,y2);
+      }
+      ctx.closePath();
+      ctx.fill();
+    }
+  }
+
+  function loop(){ t+=0.016; draw(); raf=requestAnimationFrame(loop); }
+  var raf;
+  function start(){ build(); if(reduce){ t=2.2; draw(); } else { cancelAnimationFrame(raf); loop(); } }
+
+  var rz;
+  window.addEventListener('resize',function(){ clearTimeout(rz); rz=setTimeout(start,180); });
+  start();
+})();
+</script>
+</body>
+</html>
