@@ -109,9 +109,9 @@
   .card-icon{width:60px;height:60px;border-radius:14px;flex:none;box-shadow:0 1px 4px rgba(23,20,16,.18);}
   .card-top{display:flex;align-items:center;justify-content:space-between;gap:16px;}
   .card-plat{font-family:var(--font-mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-45);text-align:right;line-height:1.5;}
-  .card-store{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--a);font-weight:600;font-size:.82rem;font-family:var(--font-mono);letter-spacing:.04em;border:1.5px solid var(--a);border-radius:3px;padding:8px 12px;transition:background .18s ease,color .18s ease;}
-  .card-store:hover{background:var(--a);color:var(--paper-pure);}
-  .card-store svg{width:15px;height:15px;}
+  .store-link{display:inline-flex;align-items:center;text-decoration:none;transition:transform .18s ease,opacity .18s ease;}
+  .store-link:hover{transform:translateY(-2px);opacity:.85;}
+  .play-badge{height:44px;width:auto;}
   .card-soon{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.06em;color:var(--ink-45);border:1.5px dashed var(--line);border-radius:3px;padding:8px 12px;}
   .card h3{font-family:var(--font-display);font-weight:800;font-size:clamp(1.6rem,3vw,2.1rem);letter-spacing:-.01em;margin:0;line-height:1;}
   .card .one{margin:0;color:var(--ink-70);font-size:1.02rem;max-width:34ch;}
@@ -120,7 +120,7 @@
     padding:5px 9px;border:1px solid var(--line);border-radius:2px;color:var(--ink-70);}
   .chip.pos{border-color:color-mix(in srgb,var(--num) 45%,transparent);color:var(--num);}
   .chip.note{border-color:color-mix(in srgb,var(--cube) 45%,transparent);color:var(--cube);}
-  .card-actions{margin-top:auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding-top:6px;}
+  .card-actions{margin-top:auto;display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;gap:16px;padding-top:10px;}
   .card-link{font-weight:600;text-decoration:none;font-size:.95rem;display:inline-flex;align-items:center;gap:6px;color:var(--a);
     border-bottom:1.5px solid transparent;transition:border-color .2s ease;}
   .card-link:hover{border-color:var(--a);}
@@ -248,10 +248,8 @@
           <span class="chip">Computer vision</span>
         </div>
         <div class="card-actions">
-          <a class="card-store" href="https://play.google.com/store/apps/details?id=com.cubecracker.app" target="_blank" rel="noopener">
-            <svg viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M4 2l12 8-12 8z"/></svg>Google Play</a>
-          <span class="dot"></span>
-          <a class="card-link muted" href="/cubecracker/">Privacy policy</a>
+          <a class="store-link" href="https://play.google.com/store/apps/details?id=com.cubecracker.app" target="_blank" rel="noopener" aria-label="Get CubeCracker on Google Play">
+            <img class="play-badge" src="/assets/badges/google-play.svg" alt="Get it on Google Play" /></a>          <a class="card-link muted" href="/cubecracker/">Privacy policy</a>
         </div>
       </article>
 
@@ -268,10 +266,8 @@
           <span class="chip">Multi-device</span>
         </div>
         <div class="card-actions">
-          <a class="card-store" href="https://play.google.com/store/apps/details?id=com.snagly.snagly" target="_blank" rel="noopener">
-            <svg viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M4 2l12 8-12 8z"/></svg>Google Play</a>
-          <span class="dot"></span>
-          <a class="card-link muted" href="/snagly/">Privacy policy</a>
+          <a class="store-link" href="https://play.google.com/store/apps/details?id=com.snagly.snagly" target="_blank" rel="noopener" aria-label="Get Snagly on Google Play">
+            <img class="play-badge" src="/assets/badges/google-play.svg" alt="Get it on Google Play" /></a>          <a class="card-link muted" href="/snagly/">Privacy policy</a>
         </div>
       </article>
 
@@ -287,9 +283,7 @@
           <span class="chip">Ages 3–10</span>
         </div>
         <div class="card-actions">
-          <span class="card-soon">Coming soon to Google Play</span>
-          <span class="dot"></span>
-          <a class="card-link muted" href="/numberbuddies/">Privacy policy</a>
+          <span class="card-soon">Coming soon to Google Play</span>          <a class="card-link muted" href="/numberbuddies/">Privacy policy</a>
         </div>
       </article>
 
@@ -305,10 +299,8 @@
           <span class="chip">Offline-first</span>
         </div>
         <div class="card-actions">
-          <a class="card-store" href="https://play.google.com/store/apps/details?id=com.aisleandgrace.app.aisle_and_grace" target="_blank" rel="noopener">
-            <svg viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M4 2l12 8-12 8z"/></svg>Google Play</a>
-          <span class="dot"></span>
-          <a class="card-link muted" href="/aisle-and-grace/">Privacy policy</a>
+          <a class="store-link" href="https://play.google.com/store/apps/details?id=com.aisleandgrace.app.aisle_and_grace" target="_blank" rel="noopener" aria-label="Get Aisle &amp; Grace on Google Play">
+            <img class="play-badge" src="/assets/badges/google-play.svg" alt="Get it on Google Play" /></a>          <a class="card-link muted" href="/aisle-and-grace/">Privacy policy</a>
         </div>
       </article>
 
